@@ -1,0 +1,30 @@
+NAV + HOME PATCH  (apply to index.html, tasks.html, strategy.html, learnings.html, questions.html)
+=======================================================================================
+
+In EACH of the 5 pages, find the <header> ... </header> block and make these 3 edits.
+
+1) On the <nav ...> line, replace its class text
+     mx-auto flex max-w-xl items-center justify-between px-4 py-3
+   with
+     mx-auto flex max-w-xl flex-wrap items-center justify-between gap-y-1 px-4 py-2
+
+2) On the <div class="flex gap-1 text-sm font-semibold"> line, replace the whole line with
+     <div class="flex w-full justify-between overflow-x-auto text-[13px] font-semibold sm:w-auto sm:justify-start sm:gap-1 sm:text-sm">
+
+3) Inside that div, in every link (Tasks, Strategy, Learnings, Questions) replace
+     px-2.5 py-1.5
+   with
+     px-2 py-1.5 sm:px-2.5
+   Then add this new link on the line right AFTER the Questions link:
+     <a href="diet.html" class="rounded-lg px-2 py-1.5 text-teal-100 hover:bg-white/10 hover:text-white sm:px-2.5">Diet</a>
+
+(Edits 1-2 stop the header from overflowing on a phone now that there are 5 links.)
+
+ONLY in index.html, also add this card inside the grid, just before the line that closes it
+(the "  </div>" right above "</main>"):
+
+    <a href="diet.html" class="rounded-2xl bg-white/10 p-5 shadow-lg transition hover:bg-white/20 sm:col-span-2">
+      <div class="text-2xl">🥗</div>
+      <div class="mt-2 text-lg font-bold">Diet</div>
+      <p class="mt-1 text-sm text-teal-100">Log a meal with a photo and a quick review.</p>
+    </a>

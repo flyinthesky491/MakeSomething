@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diet — Strategy Log</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{font-family:'Figtree',system-ui,sans-serif} h1{font-family:'Bricolage Grotesque',Georgia,serif}</style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-teal-900 via-teal-800 to-slate-900 text-slate-800">
+<header class="sticky top-0 z-10 border-b border-white/10 bg-teal-900/90 backdrop-blur">
+  <nav class="mx-auto flex max-w-xl flex-wrap items-center justify-between gap-y-1 px-4 py-2">
+    <a href="index.html" class="text-lg font-extrabold text-white">Hey Sagar</a>
+    <div class="flex w-full justify-between overflow-x-auto text-[13px] font-semibold sm:w-auto sm:justify-start sm:gap-1 sm:text-sm">
+      <a href="tasks.html" class="rounded-lg px-2 py-1.5 text-teal-100 hover:bg-white/10 hover:text-white sm:px-2.5">Tasks</a>
+      <a href="strategy.html" class="rounded-lg px-2 py-1.5 text-teal-100 hover:bg-white/10 hover:text-white sm:px-2.5">Strategy</a>
+      <a href="learnings.html" class="rounded-lg px-2 py-1.5 text-teal-100 hover:bg-white/10 hover:text-white sm:px-2.5">Learnings</a>
+      <a href="questions.html" class="rounded-lg px-2 py-1.5 text-teal-100 hover:bg-white/10 hover:text-white sm:px-2.5">Questions</a>
+      <a href="diet.html" class="rounded-lg bg-white/15 px-2 py-1.5 text-white sm:px-2.5">Diet</a>
+    </div>
+  </nav>
+</header>
+
+<main class="mx-auto max-w-xl px-4 py-8">
+  <h1 class="mb-6 text-3xl font-extrabold text-white">Diet</h1>
+
+  <form id="f" class="space-y-5 rounded-3xl bg-white p-5 shadow-2xl sm:p-7">
+    <div>
+      <label for="Date" class="mb-1 block text-sm font-semibold">Date</label>
+      <input type="date" id="Date" name="Date" required
+        class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
+    </div>
+    <div>
+      <label for="Name" class="mb-1 block text-sm font-semibold">Name</label>
+      <input type="text" id="Name" name="Name" required placeholder="What did you eat?"
+        class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
+    </div>
+    <div>
+      <label for="Photo" class="mb-1 block text-sm font-semibold">Photo</label>
+      <input type="file" id="Photo" name="Photo" accept="image/png,image/jpeg"
+        class="w-full rounded-xl border border-slate-300 bg-slate-50 text-sm file:mr-3 file:rounded-l-xl file:border-0 file:bg-teal-700 file:px-4 file:py-3 file:font-semibold file:text-white hover:file:bg-teal-600">
+      <img id="preview" alt="Selected photo preview" class="mt-3 hidden max-h-56 w-full rounded-xl object-cover">
+    </div>
+    <div>
+      <label for="Review" class="mb-1 block text-sm font-semibold">Review</label>
+      <textarea id="Review" name="Review" rows="3" placeholder="How was it?"
+        class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+    </div>
+    <button id="btn" type="submit"
+      class="w-full rounded-xl bg-amber-400 px-4 py-3.5 text-lg font-bold text-slate-900 shadow transition active:scale-[0.98] hover:bg-amber-300 disabled:opacity-60">
+      Save entry
+    </button>
+    <p id="msg" role="status" class="min-h-6 text-center text-sm font-medium"></p>
+  </form>
+</main>
+
+<script src="app.js"></script>
+<script>
+  wireForm('Diet');
+
+  // Show a small preview of the chosen photo.
+  const photo = document.getElementById('Photo');
+  const preview = document.getElementById('preview');
+  let previewUrl = null;
+  const clearPreview = () => {
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    previewUrl = null;
+    preview.classList.add('hidden');
+    preview.removeAttribute('src');
+  };
+  photo.addEventListener('change', () => {
+    clearPreview();
+    const file = photo.files[0];
+    if (!file) return;
+    previewUrl = URL.createObjectURL(file);
+    preview.src = previewUrl;
+    preview.classList.remove('hidden');
+  });
+  document.getElementById('f').addEventListener('reset', clearPreview);
+</script>
+</body>
+</html>
