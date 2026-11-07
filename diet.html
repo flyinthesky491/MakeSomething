@@ -55,9 +55,17 @@
   </form>
 </main>
 
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 <script>
-  wireForm('Diet');
+  // If the browser (or repo) still has an old app.js, say so instead of saving a broken entry.
+  if (typeof photoToJpegBase64 !== 'function') {
+    const m = document.getElementById('msg');
+    m.className = 'min-h-6 text-center text-sm font-medium text-red-600';
+    m.textContent = 'Old app.js is loaded. Upload the new app.js to your repo, then hard refresh.';
+    document.getElementById('btn').disabled = true;
+  } else {
+    wireForm('Diet');
+  }
 
   // Show a small preview of the chosen photo.
   const photo = document.getElementById('Photo');
