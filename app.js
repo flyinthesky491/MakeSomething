@@ -1,6 +1,6 @@
 // Shared submit logic for all section pages.
 // Paste your Apps Script Web app URL here once — every page uses this file.
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDSxNWSB9IWEFX8rVudlZJQdBsIw6Vx3MUcXQypOEwf-tL3y_NwAdmACYZ39a-hZ_y/exec';
+const SCRIPT_URL = https://script.google.com/macros/s/AKfycbxDSxNWSB9IWEFX8rVudlZJQdBsIw6Vx3MUcXQypOEwf-tL3y_NwAdmACYZ39a-hZ_y/exec';
 
 function wireForm(sheetName) {
   const f = document.getElementById('f');
